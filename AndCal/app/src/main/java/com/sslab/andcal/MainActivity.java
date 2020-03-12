@@ -16,6 +16,11 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private GridLayoutManager gridLayoutManager;
 
+    private RecyclerAdapter adapter2;
+    private RecyclerView recyclerView2;
+    private GridLayoutManager gridLayoutManager2;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +40,14 @@ public class MainActivity extends AppCompatActivity {
 
         adapter = new RecyclerAdapter();
         recyclerView.setAdapter(adapter);
+
+        recyclerView2 = findViewById(R.id.recyclerView2);
+
+        gridLayoutManager2 = new GridLayoutManager(this, 1);
+        recyclerView2.setLayoutManager(gridLayoutManager2);
+
+        adapter2 = new RecyclerAdapter();
+        recyclerView2.setAdapter(adapter2);
     }
 
     private void getData() {
@@ -59,6 +72,25 @@ public class MainActivity extends AppCompatActivity {
 
         // adapter의 값이 변경되었다는 것을 알려줍니다.
         adapter.notifyDataSetChanged();
+
+
+        // 임의의 데이터입니다.
+
+        List<String> listOperator = Arrays.asList("←","/","*","-","+");
+
+        for (int i = 0; i < listOperator.size(); i++) {
+            Data data2 = new Data();
+
+            // 각 List의 값들을 data 객체에 set 해줍니다.
+            data2.setPrice(listOperator.get(i));
+
+            // 각 값이 들어간 data를 adapter에 추가합니다.
+            adapter2.addItem(data2);
+        }
+
+        // adapter의 값이 변경되었다는 것을 알려줍니다.
+        adapter2.notifyDataSetChanged();
+
     }
 
 //    private void getData() {
